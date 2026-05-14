@@ -1340,7 +1340,7 @@ def generate_html_from_blocks(sorted_blocks, page_width, median_height,
 # ============================================================
 def pdf_to_clean_html(pdf_path, start_page: int = 0, end_page: int = 999999):
     doc = pymupdf.open(pdf_path)
-    html_parts = ["<!DOCTYPE html>\n<html>\n<head>\n<meta charset='utf-8'>\n</head>\n<body>"]
+    html_parts = ["<!DOCTYPE html>\n<html lang='en'>\n<head>\n<meta charset='utf-8'>\n</head>\n<body>"]
     sentence_counter = 1  
 
     # ================================================
