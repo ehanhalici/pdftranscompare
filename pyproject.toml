@@ -1,0 +1,10 @@
+[project]
+name = "pdftranscompare"
+version = "0.1.0"
+description = "pdf viewer but translate and compare orianted"
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = [
+"pymupdf",
+"BeautifulSoup4"
+]
