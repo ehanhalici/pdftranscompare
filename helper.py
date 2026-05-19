@@ -19,8 +19,12 @@ def verify_output_directory(output_directory: str) -> Path:
 
 def generate_output_path(input_path: Path, output_directory: Path) -> Path:
     document_name = get_filename_without_extension(input_path)
-    output_html_path = os.path.join(output_directory, f"{document_name}.html")
-    return Path(output_html_path)
+    document_name = document_name.replace(" ", "_")
+    extract_html_path = os.path.join(output_directory, f"{document_name}.step_1_extract.html")
+    clear_html_path = os.path.join(output_directory, f"{document_name}.step_2_clear.html")
+    sentences_html_path = os.path.join(output_directory, f"{document_name}.step_3_sentences.html")
+    translate_html_path = os.path.join(output_directory, f"{document_name}.step_4_translate.html")
+    return Path(extract_html_path), Path(clear_html_path), Path(sentences_html_path), Path(translate_html_path)
 
 def create_directory_if_missing(directory_path: Path) -> None:
     directory_path.mkdir(parents=True, exist_ok=True)

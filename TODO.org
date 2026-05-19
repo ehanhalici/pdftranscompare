@@ -1,11 +1,11 @@
 * Yapilacaklar
+- [ ] _configure_hardware_acceleration icin auto yu arastir. bir kismi cuda bir kismi cpu calissin
 - [ ] translategemma html destegi arastir, <!DOCTYPE html> ve ```html``` sarmalayicilari bazen ise yaramiyor
   - tag korunlasi icin toplu ceviri yerine cumle cumle ceviri dusunulebilir. ancak bu cikis hizini yavaslatabilir
 - [ ] atomiklik icin her cumleden sonra tmp file a kaydediilip orijinal dosyayla yer degistiriliyor. cok fazla file IO var, toplu yazma yapilabilir
 - [ ] compressed html uret. yorumlari kaldir
-- [ ] code bloklarinin gercekten code mu degilmi oldugunu tespit icin daha karmasik bir kontol gerekiyor, girinti cikinti, uzunluk kontolu vs
 - [ ] bazi code bloklarindan sonra  su kalintilar kaliyor -> ``` ```html <!DOCTYPE HTML>
-- [ ] bazi data-sid= ler llm tarafinda tag icinden cikartilip metne ekleniyor ve metinde gozukuyor, hemde tagin id si kayboluyor
+- [ ] bazi index-sid= ler llm tarafinda tag icinden cikartilip metne ekleniyor ve metinde gozukuyor, hemde tagin id si kayboluyor
 - [ ] ul-li icindeki cumleler noktaya gore ayri cumlelere bolunmuyor. genelde kisa bir cumleden olussalar da uzun cumlelerde transalte info kaybi oluyor
 - [ ] TRANSLATABLE_TAGS kaldirilacak. onun yerine UNTRANSLATABLE_TAGS eklenecek
-- [ ] split_into_sentences da regex den cikilip bs4 e gecis dusunuluyor
+- [ ] nltk ile ayrik ayrik kelimeleri birlestir

@@ -8,4 +8,6 @@ dependencies = [
     "marker-pdf",
     "markdown",
     "BeautifulSoup4",
+    "nltk",
+    "line_profiler"
 ]
