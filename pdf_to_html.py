@@ -1,18 +1,22 @@
 import os
 import base64
+import importlib
 from io import BytesIO
+from pathlib import Path
 
-import torch
-import markdown
-from marker.converters.pdf import PdfConverter
-from marker.models import create_model_dict
-from marker.output import text_from_rendered
+from lazy_loader import LazyProxy
+
+torch = LazyProxy("torch")
+markdown = LazyProxy("markdown")
+PdfConverter = LazyProxy("marker.converters.pdf", "PdfConverter")
+create_model_dict = LazyProxy("marker.models", "create_model_dict")
+text_from_rendered = LazyProxy("marker.output", "text_from_rendered")
 
 def _configure_hardware_acceleration() -> str:
     device = "cuda" if torch.cuda.is_available() else "cpu"
     os.environ["TORCH_DEVICE"] = device
     os.environ["INFERENCE_RAM"] = "16"
-    print(device)
+    print("[] INFO AI CONVERT USIN DEVICE IS :", device)
     return device
 
 def _convert_pil_image_to_base64(pil_image_object) -> str:
@@ -57,7 +61,7 @@ def _markdown_to_html(md_text: str) -> str:
     )
     return html_schema.format(BODY=body)
 
-def _pdf_to_html(pdf_path: str, output_directory: str) -> str:
+def pdf_to_html(pdf_path: str) -> str:
     execution_device = _configure_hardware_acceleration()
 
     machine_learning_models = create_model_dict(device=execution_device)

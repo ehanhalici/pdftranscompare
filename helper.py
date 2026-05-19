@@ -20,7 +20,7 @@ def verify_output_directory(output_directory: str) -> Path:
 def generate_output_path(input_path: Path, output_directory: Path) -> Path:
     document_name = get_filename_without_extension(input_path)
     output_html_path = os.path.join(output_directory, f"{document_name}.html")
-    return output_html_path
+    return Path(output_html_path)
 
 def create_directory_if_missing(directory_path: Path) -> None:
     directory_path.mkdir(parents=True, exist_ok=True)

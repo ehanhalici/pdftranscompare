@@ -11,12 +11,14 @@ def pipeline(pdf_path: str, output_directory: str, start_page: int, end_page: in
     pdf_path         = verify_pdf_path(pdf_path)
     output_directory = verify_output_directory(output_directory)
     output_path      = generate_output_path(pdf_path, output_directory)
-    
-    html_content = pdf_to_html(pdf_path, output_directory)
-    
-    save_text_content(html_content, output_path)
-    print(f"Kaydedildi: {output_path}")
 
+    print("[] INFO Pdf Isleniyor")
+    if not output_path.exists():
+        html_content = pdf_to_html(str(pdf_path.resolve()))
+        save_text_content(html_content, output_path)
+        print(f"[] INFO Kaydedildi: {output_path}")
+    else:
+        print(f"[] INFO Pdf Zaten Var: {output_path}")
 
 if __name__ == "__main__":
     import sys
