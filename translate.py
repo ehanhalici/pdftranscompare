@@ -1,5 +1,5 @@
 from typing import Tuple
-import datetime
+from datetime import datetime
 import pathlib
 import importlib
 
@@ -45,7 +45,7 @@ def _get_model():
 
 def process_translation(text: str) -> Tuple[str, float]:
     """Metni çevirir ve geçen süreyi döndürür."""
-    start_time = datetime.datetime.now()
+    start_time = datetime.now()
     
     model = _get_model()
 
@@ -59,5 +59,5 @@ def process_translation(text: str) -> Tuple[str, float]:
 
     translation = response['choices'][0]['message']['content'].strip()
     
-    diff_time = datetime.datetime.now() - start_time
+    diff_time = datetime.now() - start_time
     return translation, diff_time.total_seconds()

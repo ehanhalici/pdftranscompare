@@ -2,7 +2,7 @@ import re
 import copy
 from pathlib import Path
 from typing import Union, Optional
-
+from datetime import datetime, timedelta
 from bs4 import BeautifulSoup, Tag, NavigableString
 
 from translate import process_translation
@@ -489,11 +489,16 @@ def pdf_translate_and_merge(html_content: str, output_path: Path, max_words: int
     processed_count: int = 0
     tags_to_process: list[Tag] = collect_top_level_tags(soup)
 
+    start_time = datetime.now()
     for tag in tags_to_process:
         diff_time: Optional[float] = process_tag(soup, tag, max_words)
         if diff_time is not None:
             processed_count += 1
 
-        save_soup_to_file(soup, output_path)
-        
+        end_time = datetime.now()
+        if  end_time - start_time > timedelta(seconds=10):
+            start_time = end_time
+            save_soup_to_file(soup, output_path)
+
+    save_soup_to_file(soup, output_path)
     print(f"\n[+] İşlem Tamamlandı! Toplam {processed_count} yeni blok çevrildi.")
