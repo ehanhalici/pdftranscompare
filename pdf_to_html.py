@@ -5,9 +5,6 @@ import importlib
 from io import BytesIO
 from pathlib import Path
 
-import torch
-import transformers
-
 from lazy_loader import LazyProxy
 
 torch = LazyProxy("torch")
@@ -17,15 +14,13 @@ create_model_dict = LazyProxy("marker.models", "create_model_dict")
 text_from_rendered = LazyProxy("marker.output", "text_from_rendered")
 
 def _configure_hardware_acceleration() -> str:
-    if os.environ.get('HARDWARE_DEVICE') in ['cuda', 'cpu']:
-        device = os.environ.get('HARDWARE_DEVICE')
-        print("[*] INFO export HARDWARE_DEVICE=", device)
-    else:
-        device = "cuda" if torch.cuda.is_available() else "cpu"
-    os.environ["TORCH_DEVICE"] = device
-    os.environ["INFERENCE_RAM"] = "12"
+    device = os.environ.get('TORCH_DEVICE')
+    if device == "cuda":
+        torch.cuda.empty_cache()
+
     print("[*] INFO AI CONVERT USING DEVICE IS :", device)
     return device
+
 
 def _convert_pil_image_to_base64(pil_image_object) -> str:
     buffered_bytes = BytesIO()

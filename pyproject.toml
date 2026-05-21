@@ -9,5 +9,6 @@ dependencies = [
     "markdown",
     "BeautifulSoup4",
     "nltk",
-    "line_profiler"
+    "line_profiler",
+    "wordsegment",
 ]

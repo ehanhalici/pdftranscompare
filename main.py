@@ -7,7 +7,7 @@ from pdf_to_html import pdf_to_html
 from pdf_clean import strip_some_tag
 from html_index_sentences import index_sentences_in_html
 from pdf_translate_and_merge import pdf_translate_and_merge
-
+from environs import validate_env
 
 def extract_pdf(pdf_path: Path, extract_path: Path) -> str:
     if extract_path.exists():
@@ -70,5 +70,6 @@ if __name__ == "__main__":
     output_directory = sys.argv[2] if len(sys.argv) > 2 else "."
     start_page       = int(sys.argv[3]) if len(sys.argv) > 3 else 0
     end_page         = int(sys.argv[4]) if len(sys.argv) > 4 else 9999999
+    validate_env()
     
     pipeline(pdf_path, output_directory, start_page, end_page)
