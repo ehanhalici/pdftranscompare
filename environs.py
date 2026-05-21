@@ -19,4 +19,4 @@ def validate_env():
             os.environ[key] = probability[value]
         if os.environ.get(key, probability[value]) not in probability:
             raise Exception(f"[*] ERROR: os environ {key} is can be {probability}")
-        print(f"[*] INFO: os environ {key}={probability[value]}, possible vals is : {probability}")
+        print(f"[*] INFO: os environ {key}={os.environ[key]}, possible vals is : {probability}")
